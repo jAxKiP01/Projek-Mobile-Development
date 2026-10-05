@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">MikhailMuhammadRizq</string>
     <string name="deskripsi">Login Page</string>
+    <string name="loremIpsum">lorem ipsum dolor sit amet consectetur adipiscing elit maxime praesentium consequat voluptatum molestias facilis officia iusto fugiat quibusdam quibusdam id qui dolor incididunt quo fugiat cumque atque dolor animi eu dolores dolor sit nisi exercitation dolorem cillum elit ut vero in velit quibusdam deserunt eum reprehenderit et duis animi tempore</string>
+<!--    <string name="link">https://www.google.com/search?q=hiura+mihate+pfp&client=ms-unknown&hs=Fukq&sca_esv=f6b99ca7e3571d66&tbm=isch&sxsrf=APpeQnvsXRrLgARCQscXXYlBfykjcEOQfw:1791167217740&source=lnms&sa=X&ved=0ahUKEwjZpfzt6aGXAxUCkuEIHS6aCfoQ_AUIBigB&biw=412&bih=504</string>-->
 </resources>
