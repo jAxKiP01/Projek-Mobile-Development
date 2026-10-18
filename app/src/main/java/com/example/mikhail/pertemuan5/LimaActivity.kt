@@ -48,7 +48,6 @@ class LimaActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
-
     }
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.main_menu, menu)

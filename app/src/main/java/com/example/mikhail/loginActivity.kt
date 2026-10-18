@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -44,5 +45,44 @@ class loginActivity : AppCompatActivity() {
             Log.d("Output", "Username : $uname Password : $pass")
             Toast.makeText(this,"Username: $uname Password: $pass", Toast.LENGTH_LONG).show()
         }
+        binding.btnLogin.setOnClickListener {
+            val username = binding.edtUsername.text.toString().trim()
+            val password = binding.edtPassword.text.toString()
+            if (username.isNotEmpty() && username == password) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+            } else
+            {
+                AlertDialog.Builder(this)
+                    .setTitle("Login Gagal")
+                    .setMessage("Silahkan coba lagi")
+                    .setPositiveButton("OK") { dialog, _ -> dialog.dismiss() }
+                    .show()
+            }
+        }
+// Kode ini harus selalu dipanggil saat butuh akses "user_pref"
+            val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+// Kondisi jika isLogin bernilai true
+            val isLogin = sharedPref.getBoolean("isLogin", false)
+            if (isLogin) {
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+                return
+            }
+        binding.btnLogin.setOnClickListener {
+            val username = binding.edtUsername.text.toString().trim()
+            val password = binding.edtPassword.text.toString()
+            if (username.isNotEmpty() && username == password) {
+                val editor = sharedPref.edit()
+                editor.putBoolean("isLogin", true)
+                editor.putString("username", username)
+                editor.apply()
+                startActivity(Intent(this, MainActivity::class.java))
+                finish()
+        }
+        }
     }
-}
+//            } else {
+//                ... // AlertDialog “Silahkan coba lagi”
+//            }
+    }
