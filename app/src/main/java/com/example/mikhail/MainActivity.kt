@@ -85,15 +85,17 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        // 5. OnClick pada ImageView Buku 3 (The Boxer) -> Memunculkan Toast & Navigasi ke LimaActivity
+        // Pada bagian listener imageView5 di MainActivity.kt:
         binding.imageView5.setOnClickListener {
-            Toast.makeText(this, "Membuka detail The Boxer", Toast.LENGTH_SHORT).show()
-            startActivity(Intent(this, LimaActivity::class.java))
+            val intent = Intent(this, WebViewActivity::class.java)
+            // Tinggal ganti URL di bawah ini dengan link komik/web yang kamu mau:
+            intent.putExtra("url_web", "https://pcr.ac.id")
+            startActivity(intent)
         }
 
-        // 6. OnClick pada FAB (+)
+// Untuk tombol Floating Action Button (+) di MainActivity agar membuka Halaman Form Tambah Buku (EnamActivity):
         binding.fabAddBook.setOnClickListener {
-            Toast.makeText(this, "Tambah Buku Diklik", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, EnamActivity::class.java))
         }
     }
 }

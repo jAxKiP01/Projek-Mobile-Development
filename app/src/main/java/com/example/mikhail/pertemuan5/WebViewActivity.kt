@@ -10,27 +10,47 @@ import com.example.mikhail.R
 import com.example.mikhail.databinding.ActivityWebViewBinding
 
 class WebViewActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityWebViewBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         binding = ActivityWebViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        binding.webView.webViewClient = WebViewClient()
-        binding.webView.settings.javaScriptEnabled = true
-        binding.webView.loadUrl("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhuDyL-kl75Iiq41GXjkIaKzyvG0WgEe9anzLq6GHsLQ&s=10")
 
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            title = "My Bini"
+            title = "Reader Online"
             setDisplayHomeAsUpEnabled(true)
             setDisplayShowHomeEnabled(true)
-            setHomeAsUpIndicator(R.drawable.ic_arrow_back)
         }
+
+        // Mengambil URL dari intent (Default ke pcr.ac.id jika kosong)
+        val urlWeb = intent.getStringExtra("url_web") ?: "https://atsu.moe/read/jqb3X/hBZpERcx#rs=f:0.05237064450806508"
+
+        binding.webView.webViewClient = WebViewClient()
+        binding.webView.settings.javaScriptEnabled = true
+        binding.webView.loadUrl(urlWeb)
+
+        // Efek Scroll Toolbar WebView (Pertemuan 5)
+        binding.webView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                binding.appBar.setExpanded(false, true)
+            } else if (scrollY < oldScrollY) {
+                binding.appBar.setExpanded(true, true)
+            }
+        }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressedDispatcher.onBackPressed()
+        return true
     }
 }
