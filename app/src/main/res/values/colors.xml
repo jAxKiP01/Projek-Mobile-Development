@@ -2,6 +2,16 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white2">#FFFFFFFF</color>
     <color name="btn_login">#3A3030</color>
+    <color name="blue1">#1E293B</color>
+    <color name="blue2">#0F172A</color>
+    <color name="blue3">#172234</color>
+    <color name="confirmblue">#0077B6</color>
+    <color name="background">#F8FAFC</color>
+    <color name="iconbackground">#E2E8F0</color>
+    <color name="alertred">#D90429</color>
+    <color name="alertgreen">#2A9D8F</color>
+
 
 </resources>

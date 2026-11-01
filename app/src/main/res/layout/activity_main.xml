@@ -1,121 +1,182 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txtUsername"
-        android:layout_width="wrap_content"
+    <!-- Top AppBar Layout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Username"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        android:background="@color/blue2">
 
-    <TextView
-        android:id="@+id/txtPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
-        android:text="Password"
-        android:textSize="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/materialCardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="116dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:cardCornerRadius="25dp"
-        app:cardBackgroundColor="#C7F7FB"
-        >
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue3"
+            app:layout_scrollFlags="scroll|enterAlways">
 
-            <Button
-                android:id="@+id/btnSnackbar"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/ivLogoHome"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:src="@drawable/minecraftbookshelf" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/pressstart2pregular"
+                    android:text="LI\nBY\nME"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
+
+                <!-- Tombol Search (Kaca Pembesar) -->
+                <ImageView
+                    android:id="@+id/btnSearchHeader"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginEnd="16dp"
+                    android:contentDescription="Search"
+                    android:src="@android:drawable/ic_menu_search"
+                    app:tint="@color/white2" />
+
+                <!-- Tombol Garis Tiga (Menu / Logout) -->
+                <ImageView
+                    android:id="@+id/btnMenuHeader"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:contentDescription="Menu"
+                    android:src="@drawable/baseline_dehaze_24"
+                    app:tint="@color/white2" />
+
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- Kolom Pencarian Overlay (Muncul saat btnSearchHeader diklik) -->
+        <LinearLayout
+            android:id="@+id/layoutSearchBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue2"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:visibility="gone">
+
+            <EditText
+                android:id="@+id/etSearchInput"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:background="@drawable/ic_launcher_background"
+                android:backgroundTint="@color/white"
+                android:drawableStart="@android:drawable/ic_menu_search"
+                android:drawablePadding="8dp"
+                android:fontFamily="@font/vt323regular"
+                android:hint="Book Title..."
+                android:paddingHorizontal="12dp"
+                android:textColor="@color/black"
+                android:textColorHint="#888888"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Konten Scrollable -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:padding="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Recently Added -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#3FEB99"
-                android:text="Snackbar"
-                app:layout_constraintBottom_toTopOf="@+id/btnAlert"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:fontFamily="@font/vt323regular"
+                android:text="Recently Added"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
-            <Button
-                android:id="@+id/btnAlert"
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="132dp"
+                android:layout_height="176dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/eaaslielts" />
+
+            <!-- Continue Reading -->
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="36dp"
-                android:text="Alert"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/vt323regular"
+                android:text="Continue Reading"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
 
-    </com.google.android.material.card.MaterialCardView>
+            <!-- More in your library -->
+            <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="132dp"
+                android:layout_height="176dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/tffbwd" />
 
-    <TextView
-        android:id="@+id/txtHeader"
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/vt323regular"
+                android:text="More in your library"
+                android:textColor="@color/black"
+                android:textSize="25dp" />
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="132dp"
+                android:layout_height="176dp"
+                android:layout_marginTop="8dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:srcCompat="@drawable/theboxer" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button (+ Tambah Buku) -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabAddBook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Halaman Main"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:backgroundTint="@color/blue2"
+        android:src="@android:drawable/ic_input_add"
+        app:tint="@color/white" />
 
-        app:layout_constraintBottom_toTopOf="@+id/txtUsername"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/btnToLima"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Lima"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.185"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCardView"
-        app:layout_constraintVertical_bias="0.514" />
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        app:layout_constraintBottom_toBottomOf="@+id/btnToLima"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.123"
-        app:layout_constraintStart_toEndOf="@+id/btnToLima"
-        app:layout_constraintTop_toTopOf="@+id/btnToLima"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/btnToEnam"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/btnLogout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btnLogout"
-        app:layout_constraintTop_toTopOf="@+id/btnLogout" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

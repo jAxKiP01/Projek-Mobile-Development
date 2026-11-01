@@ -12,19 +12,6 @@
         android:layout_height="wrap_content">
 
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="#0097A7"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:subtitleTextColor="@android:color/white"
-        app:titleTextColor="@android:color/white"
-        app:layout_scrollFlags="scroll|enterAlways"
-        />
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -39,7 +26,7 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
             <!-- Tambahkan konten panjang supaya bisa di-scroll -->
-            
+
             <Button
                 android:id="@+id/btnWebView"
                 android:layout_width="match_parent"
@@ -89,4 +76,18 @@
                 android:text="@string/loremIpsum"></TextView>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#0097A7"
+        app:layout_anchor="@+id/appBar"
+        app:layout_anchorGravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_scrollFlags="scroll|enterAlways"
+        app:subtitleTextColor="@android:color/white"
+        app:titleTextColor="@android:color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
